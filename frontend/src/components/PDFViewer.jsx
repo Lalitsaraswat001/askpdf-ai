@@ -73,8 +73,8 @@ function PDFViewer({ selectedPdf, selectedPage }) {
 
           <h2
             className={`mt-6 text-2xl font-bold ${darkMode
-                ? "text-white"
-                : "text-slate-900"
+              ? "text-white"
+              : "text-slate-900"
               }`}
           >
             No PDF Selected
@@ -82,8 +82,8 @@ function PDFViewer({ selectedPdf, selectedPage }) {
 
           <p
             className={`mt-2 ${darkMode
-                ? "text-slate-400"
-                : "text-slate-600"
+              ? "text-slate-400"
+              : "text-slate-600"
               }`}
           >
             Select a PDF from the sidebar to preview it.
@@ -94,7 +94,10 @@ function PDFViewer({ selectedPdf, selectedPage }) {
     );
   }
 
-  const pdfUrl = `http://localhost:5000/uploads/${selectedPdf.filepath.replace(
+  const BACKEND_URL =
+    import.meta.env.VITE_API_URL.replace("/api", "");
+
+  const pdfUrl = `${BACKEND_URL}/uploads/${selectedPdf.filepath.replace(
     /\\/g,
     "/"
   )}`;
@@ -119,8 +122,8 @@ function PDFViewer({ selectedPdf, selectedPage }) {
           duration: 0.35,
         }}
         className={`h-20 px-6 border-b flex items-center justify-between transition-colors duration-300 ${darkMode
-            ? "bg-[#111827] border-white/10"
-            : "bg-slate-50 border-slate-200"
+          ? "bg-[#111827] border-white/10"
+          : "bg-slate-50 border-slate-200"
           }`}
       >
         {/* Left */}
@@ -151,8 +154,8 @@ function PDFViewer({ selectedPdf, selectedPage }) {
               setScale((prev) => Math.max(0.6, prev - 0.1))
             }
             className={`w-10 h-10 rounded-xl border flex items-center justify-center transition ${darkMode
-                ? "border-white/10 bg-white/5 hover:bg-white/10"
-                : "border-slate-300 bg-white hover:bg-slate-100"
+              ? "border-white/10 bg-white/5 hover:bg-white/10"
+              : "border-slate-300 bg-white hover:bg-slate-100"
               }`}
           >
             <ZoomOut
@@ -175,8 +178,8 @@ function PDFViewer({ selectedPdf, selectedPage }) {
               setScale((prev) => Math.min(3, prev + 0.1))
             }
             className={`w-10 h-10 rounded-xl border flex items-center justify-center transition ${darkMode
-                ? "border-white/10 bg-white/5 hover:bg-white/10"
-                : "border-slate-300 bg-white hover:bg-slate-100"
+              ? "border-white/10 bg-white/5 hover:bg-white/10"
+              : "border-slate-300 bg-white hover:bg-slate-100"
               }`}
           >
             <ZoomIn
@@ -192,8 +195,8 @@ function PDFViewer({ selectedPdf, selectedPage }) {
               setRotation((r) => (r + 90) % 360)
             }
             className={`w-10 h-10 rounded-xl border flex items-center justify-center transition ${darkMode
-                ? "border-white/10 bg-white/5 hover:bg-white/10"
-                : "border-slate-300 bg-white hover:bg-slate-100"
+              ? "border-white/10 bg-white/5 hover:bg-white/10"
+              : "border-slate-300 bg-white hover:bg-slate-100"
               }`}
           >
             <RotateCw
@@ -207,8 +210,8 @@ function PDFViewer({ selectedPdf, selectedPage }) {
           <button
             onClick={toggleFullscreen}
             className={`w-10 h-10 rounded-xl border flex items-center justify-center transition ${darkMode
-                ? "border-white/10 bg-white/5 hover:bg-white/10"
-                : "border-slate-300 bg-white hover:bg-slate-100"
+              ? "border-white/10 bg-white/5 hover:bg-white/10"
+              : "border-slate-300 bg-white hover:bg-slate-100"
               }`}
           >
             {isFullscreen ? (
@@ -271,8 +274,8 @@ function PDFViewer({ selectedPdf, selectedPage }) {
 
               <h2
                 className={`mt-5 text-xl font-semibold ${darkMode
-                    ? "text-white"
-                    : "text-slate-900"
+                  ? "text-white"
+                  : "text-slate-900"
                   }`}
               >
                 Unable to load PDF
@@ -280,8 +283,8 @@ function PDFViewer({ selectedPdf, selectedPage }) {
 
               <p
                 className={`mt-2 ${darkMode
-                    ? "text-slate-400"
-                    : "text-slate-600"
+                  ? "text-slate-400"
+                  : "text-slate-600"
                   }`}
               >
                 Please try uploading the document again.
@@ -319,8 +322,8 @@ function PDFViewer({ selectedPdf, selectedPage }) {
 
       <div
         className={`h-20 border-t flex items-center justify-center gap-6 transition-colors duration-300 ${darkMode
-            ? "bg-[#111827] border-white/10"
-            : "bg-slate-50 border-slate-200"
+          ? "bg-[#111827] border-white/10"
+          : "bg-slate-50 border-slate-200"
           }`}
       >
         {/* Previous */}
@@ -329,8 +332,8 @@ function PDFViewer({ selectedPdf, selectedPage }) {
           disabled={pageNumber <= 1}
           onClick={() => setPageNumber((prev) => prev - 1)}
           className={`w-11 h-11 rounded-xl border flex items-center justify-center transition disabled:opacity-40 ${darkMode
-              ? "bg-white/5 border-white/10 hover:bg-white/10"
-              : "bg-white border-slate-300 hover:bg-slate-100"
+            ? "bg-white/5 border-white/10 hover:bg-white/10"
+            : "bg-white border-slate-300 hover:bg-slate-100"
             }`}
         >
           <ChevronLeft
@@ -347,8 +350,8 @@ function PDFViewer({ selectedPdf, selectedPage }) {
 
         <div
           className={`flex items-center gap-3 rounded-xl px-5 py-2 border ${darkMode
-              ? "bg-white/5 border-white/10"
-              : "bg-white border-slate-300"
+            ? "bg-white/5 border-white/10"
+            : "bg-white border-slate-300"
             }`}
         >
           <span
@@ -374,8 +377,8 @@ function PDFViewer({ selectedPdf, selectedPage }) {
               }
             }}
             className={`w-16 bg-transparent outline-none text-center font-semibold ${darkMode
-                ? "text-white"
-                : "text-slate-900"
+              ? "text-white"
+              : "text-slate-900"
               }`}
           />
 
@@ -391,8 +394,8 @@ function PDFViewer({ selectedPdf, selectedPage }) {
 
           <span
             className={`font-semibold ${darkMode
-                ? "text-white"
-                : "text-slate-900"
+              ? "text-white"
+              : "text-slate-900"
               }`}
           >
             {numPages || 1}
@@ -405,8 +408,8 @@ function PDFViewer({ selectedPdf, selectedPage }) {
           disabled={pageNumber >= numPages}
           onClick={() => setPageNumber((prev) => prev + 1)}
           className={`w-11 h-11 rounded-xl border flex items-center justify-center transition disabled:opacity-40 ${darkMode
-              ? "bg-white/5 border-white/10 hover:bg-white/10"
-              : "bg-white border-slate-300 hover:bg-slate-100"
+            ? "bg-white/5 border-white/10 hover:bg-white/10"
+            : "bg-white border-slate-300 hover:bg-slate-100"
             }`}
         >
           <ChevronRight

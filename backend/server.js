@@ -12,8 +12,11 @@ const path = require("path");
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
-    credentials: true,
+    origin: [
+      "http://localhost:5173",
+      "https://askpdf-ai-ochre.vercel.app",
+    ],
+        credentials: true,
   })
 );
 

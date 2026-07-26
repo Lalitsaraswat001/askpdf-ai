@@ -80,7 +80,10 @@ exports.uploadPDF = async (req, res) => {
     });
 
   } catch (error) {
-    console.error("PDF Upload Error:", error);
+    console.error("========== PDF Upload Error ==========");
+    console.error(error);
+    console.error(error.stack);
+    console.error("======================================");
 
     return res.status(500).json({
       success: false,
@@ -133,7 +136,10 @@ exports.deletePDF = async (req, res) => {
     });
 
   } catch (error) {
-    console.error("Delete PDF Error:", error);
+    console.error("========== Delete PDF Error ==========");
+    console.error(error);
+    console.error(error.stack);
+    console.error("======================================");
 
     return res.status(500).json({
       success: false,

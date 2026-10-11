@@ -2,7 +2,7 @@ const { ChatGroq } = require("@langchain/groq");
 
 const llm = new ChatGroq({
   apiKey: process.env.GROQ_API_KEY,
-  model: "llama-3.1-8b-instant",
+  model: "openai/gpt-oss-20b",
   temperature: 0.2,
 });
 
@@ -11,10 +11,7 @@ const llm = new ChatGroq({
 // ------------------------------
 async function generateAnswer(question, retrievedChunks) {
   const context = retrievedChunks
-    .map(
-      (chunk) =>
-        `Page ${chunk.pageNumber}\n${chunk.text}`
-    )
+    .map((chunk) => `Page ${chunk.pageNumber}\n${chunk.text}`)
     .join("\n\n");
 
   const prompt = `
@@ -45,12 +42,17 @@ Answer:
 // PDF Summary
 // ------------------------------
 async function generateSummary(retrievedChunks) {
-  const context = retrievedChunks.join("\n\n");
+  const context = retrievedChunks
+    .map((chunk) =>
+      typeof chunk === "string" ? chunk : chunk.text
+    )
+    .join("\n\n");
 
   const prompt = `
 You are an AI document assistant.
 
 Read the following document and generate a professional summary.
+Use ONLY the document content. Do not invent information.
 
 Return the answer in Markdown using this exact structure:
 
